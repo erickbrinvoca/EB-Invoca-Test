@@ -3,151 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoca Tag Testing | EB</title>
+    <title>Invoca Debug Site</title>
     <style>
-        :root {
-            --primary: #7d33ff;
-            --accent: #33ddff;
-            --dark: #333;
-            --light: #f9f9f9;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .phone-display {
-            background: #eef2f3;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 20px 0;
-            border: 2px dashed var(--primary);
-        }
-
-        .invoca-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: var(--primary);
-            display: block;
-        }
-
-        .cta {
-            background: var(--primary);
-            color: #fff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            transition: opacity 0.3s;
-        }
-
-        .cta:hover { opacity: 0.9; }
-
-        form {
-            display: grid;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background: var(--dark);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            background: var(--dark);
-            color: #ccc;
-            font-size: 0.9em;
-        }
+        body { font-family: sans-serif; background: #f0f0f0; text-align: center; padding: 50px; }
+        .phone-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block; }
+        #invoca-target { font-size: 2.5rem; font-weight: bold; color: #7d33ff; display: block; margin: 20px 0; }
+        .status-badge { padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; background: #eee; }
     </style>
 </head>
-
 <body>
 
-    <header>
-        <h1>EB Testing Site</h1>
-        <p>Advanced Environment for Invoca Tag & Promo Number Validation</p>
-    </header>
-
-    <div class="container">
-        <section class="phone-display">
-            <h3>Call Us Now:</h3>
-            <span class="invoca-number">1-800-555-0199</span>
-            <p><small>(This number should swap if the Tag is active and requirements are met)</small></p>
-        </section>
-
-        <h2>Test Conversion Form</h2>
-        <form id="test-form">
-            <div>
-                <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="John Doe">
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="john@example.com">
-            </div>
-            <div>
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="555-555-5555">
-            </div>
-            <div>
-                <label for="message">Message</label>
-                <textarea id="message" rows="3"></textarea>
-            </div>
-            <input type="submit" value="Submit Test Data">
-        </form>
-
-        <p style="margin-top:30px;">
-            <a href="https://www.invoca.com" class="cta">Visit Invoca Corporate</a>
-        </p>
+    <div class="phone-box">
+        <h1>Testing Invoca Swap</h1>
+        <p>The number below should change if the tag is active:</p>
+        
+        <span id="invoca-target">800-555-0100</span>
+        
+        <div class="status-badge">Selector ID: #invoca-target</div>
     </div>
 
-    <footer>
-        &copy; 2026 EB Testing Lab | Powered by Invoca Tag ID: 2967/0325765052
-    </footer>
+    <script>
+      (function(i,n,v,o,c,a) { 
+        i.InvocaTagId = o; 
+        var s = n.createElement('script'); s.type = 'text/javascript';
+        s.async = true; s.src = ('https:' === n.location.protocol ? 'https://' : 'http://' ) + v;
+        var fs = n.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(s, fs);
+      })(window, document, 'solutions.invocacdn.com/js/invoca-latest.min.js', '2967/0325765052');
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            if (window.Invoca) {
+                console.log("✅ Invoca Tag detected on page.");
+            } else {
+                console.error("❌ Invoca Tag NOT detected. Check your Network tab.");
+            }
+        });
+    </script>
+
 
 <script>
   (function(i,n,v,o,c,a) { i.InvocaTagId = o; var s = n.createElement('script'); s.type = 'text/javascript';
     s.async = true; s.src = ('https:' === n.location.protocol ? 'https://' : 'http://' ) + v;
     var fs = n.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(s, fs);
-  })(window, document, 'solutions.invocacdn.com/js/invoca-latest.min.js', '2967/0325765052');
+  })(window, document, 'solutions.invocacdn.com/js/invoca-latest.min.js', '2967/1642819500');
 </script>
+
+
+
     
 </body>
 </html>
